@@ -11,6 +11,8 @@ import { from } from 'rxjs';
 export class AppComponent implements OnInit {
   students : Student[];
   action : string;
+  currentIndex : number;
+  currentStudent : Student;
 
   addStudent(){
     this.action = "add";
@@ -21,9 +23,22 @@ export class AppComponent implements OnInit {
     this.action = ""; 
   }
 
-  editStudent(){
+  showEditStudent(s : Student, indice : number){
     this.action= "edit";
+    this.currentIndex = indice;
+    this.currentStudent = s;
   }
+
+  editStudent(s : Student){
+    this.students[this.currentIndex] = s;
+    this.action = "";
+  }
+
+  deleteStudent(indice : number){
+    if(confirm("Etes-vous sûre de vouloir supprimer l'étudiant " + this.students[indice].name)){
+      this.students.splice(indice, 1);
+    }
+  } 
 
   ngOnInit(){
     this.students = [

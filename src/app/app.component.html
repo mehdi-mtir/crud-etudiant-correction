@@ -19,8 +19,8 @@
                 <td>{{student.name}}</td>
                 <td>{{student.firstname}}</td>
                 <td>{{student.class}}</td>
-                <td><input type="button" class="btn btn-info" value="Editer" (click)="editStudent()"></td>
-                <td><input type="button" class="btn btn-danger" value="Supprimer"></td>
+                <td><input type="button" class="btn btn-info" value="Editer" (click)="showEditStudent(student, i)"></td>
+                <td><input type="button" class="btn btn-danger" value="Supprimer" (click)="deleteStudent(i)"></td>
               </tr>
             </tbody>
         </table>
@@ -29,6 +29,6 @@
         <app-add *ngIf="action == 'add'" (addEvent)="pushStudent($event)"></app-add>
     </div>
     <div>
-        <app-edit *ngIf="action == 'edit'"></app-edit>
+        <app-edit *ngIf="action == 'edit'" [student]="currentStudent" (editedStudent)="editStudent($event)"></app-edit>
     </div>
 </div>
