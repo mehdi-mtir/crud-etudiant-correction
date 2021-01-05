@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from './model/student';
-import { PrixPipe } from './prix.pipe';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +12,17 @@ export class AppComponent implements OnInit {
   currentIndex : number;
   currentStudent : Student;
 
+  saveStudents(){
+    window.localStorage.setItem("students", JSON.stringify(this.students));
+  }
+
   addStudent(){
     this.action = "add";
   }
 
   pushStudent(s : Student){
     this.students.push(s);
+    this.saveStudents();
     this.action = ""; 
   }
 
@@ -31,21 +34,32 @@ export class AppComponent implements OnInit {
 
   editStudent(s : Student){
     this.students[this.currentIndex] = s;
+    this.saveStudents();
     this.action = "";
   }
 
   deleteStudent(indice : number){
     if(confirm("Etes-vous sûre de vouloir supprimer l'étudiant " + this.students[indice].name)){
       this.students.splice(indice, 1);
+      this.saveStudents();
     }
   } 
 
   ngOnInit(){
-    this.students = [
+    /*this.students = [
       new Student("Tounsi", "Mohamed", "L2DSI1"),
       new Student("Ben Ayed", "Ali", "L2DSI2"),
       new Student("Ben Fraj", "Meriem", "L2DSI3")
-    ];
+    ];*/
+
+    if(window.localStorage.getItem("students")){
+      this.students = JSON.parse(window.localStorage.getItem("students"));
+    }
+    else{
+      this.students = [];
+    }
+
+
 
     this.action = "";
   }
