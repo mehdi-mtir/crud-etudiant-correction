@@ -1,6 +1,7 @@
 <div class="container">
     <div>
-        <input type="button" class="btn btn-primary float-right mt-3" value="Ajouter" (click)="addStudent()"/>        <h1>Liste des etudiants</h1>
+        <input type="button" class="btn btn-primary float-right mt-3" value="Ajouter" (click)="showAddStudent()"/>        
+        <h1>Liste des etudiants</h1>
 
         <table class="table">
             <thead class="thead-dark">
@@ -26,9 +27,9 @@
         </table>
     </div>
     <div>
-        <app-add *ngIf="action == 'add'" (addEvent)="pushStudent($event)"></app-add>
+        <app-add *ngIf="action == 'add'"></app-add>
     </div>
     <div>
-        <app-edit *ngIf="action == 'edit'" [student]="currentStudent" (editedStudent)="editStudent($event)"></app-edit>
+        <app-edit *ngIf="action == 'edit'" ></app-edit>
     </div>
 </div>
