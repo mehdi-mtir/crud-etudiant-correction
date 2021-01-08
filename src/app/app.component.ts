@@ -26,6 +26,10 @@ export class AppComponent implements DoCheck, OnInit {
     this.serviceStudent.currentIndex = indice;
     this.serviceStudent.currentStudent = s;
   }
+
+  deleteStudent(indice : number){
+    this.serviceStudent.deleteStudent(indice);
+  }
  
 
   ngDoCheck(){

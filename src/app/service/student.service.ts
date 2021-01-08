@@ -36,6 +36,10 @@ export class StudentService {
     
   }
 
+  getCurrentStudent(){
+    return this.currentStudent;
+  }
+
   addStudent(s : Student){
     this.students.push(s);
     this.saveStudents();
