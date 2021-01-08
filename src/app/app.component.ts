@@ -59,8 +59,6 @@ export class AppComponent implements OnInit {
       this.students = [];
     }
 
-
-
     this.action = "";
   }
 
